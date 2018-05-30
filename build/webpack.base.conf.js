@@ -2,6 +2,7 @@
 const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
+const webpack = require('webpack')
 const vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve (dir) {
@@ -36,8 +37,17 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
-    }
+      '#': resolve('node_modules')
+    },
   },
+  externals: {
+    'jquery': 'jquery'
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery'
+    })
+  ],
   module: {
     rules: [
       ...(config.dev.useEslint ? [createLintingRule()] : []),

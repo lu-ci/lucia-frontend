@@ -1,0 +1,5 @@
+<template>
+  <div id="lc-not-found">
+    <h1>Not Found</h1>
+  </div>
+</template>
